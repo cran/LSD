@@ -1,0 +1,6 @@
+demo.emptyplot <-
+function()
+{
+	emptyplot()
+}
+
