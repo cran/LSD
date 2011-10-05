@@ -4,10 +4,10 @@
 \title{Clusterplot}
 \description{Progression plot for two-dimensional data in several clusters, briefly a boxplot over time}
 \usage{
-clusterplot(clusmat, label = NULL, at = NULL, main = "Clusterplot", xlim = NULL, ylim = NULL, xlab = "Columns", ylab = "Rows", xaxt = "s", xlabels = NULL, las = 1, fromto = c(0.05, 0.95), colpal = "standardheat", nrcolors = 25, outer.col = "light grey", quartiles.col = c("black", "grey", "grey"), add.quartiles = TRUE, separate = TRUE, revpal = FALSE, size = TRUE, alpha = NULL, ...)
+clusterplot(clusmat, label = NULL, at = NULL, main = "Clusterplot", xlim = NULL, ylim = NULL, xlab = "Columns", ylab = "Rows", xaxt = "s", xlabels = NULL, las = 1, fromto = c(0.05, 0.95), colpal = "standardheat", nrcolors = 25, outer.col = "light grey", quartiles.col = c("black", "grey", "grey"), add.quartiles = TRUE, separate = TRUE, revpal = FALSE, size = TRUE, alpha = NULL, smooth = FALSE,	df = 3, ...)
 }
 \arguments{
-  \item{clusmat}{\code{matrix with numerical entries, quantiles of rows will define colors}}
+  \item{clusmat}{\code{matrix or list with numerical entries, quantiles of rows resp. vectors will define colors}}
   \item{label}{\code{if multiple clusters should be plotted: vector with labels, which assigns rows to clusters}}
   \item{at}{\code{at which x-positions the columns should occur}}
   \item{main}{\code{the title(s) of the plot(s)}}
@@ -27,6 +27,8 @@ clusterplot(clusmat, label = NULL, at = NULL, main = "Clusterplot", xlim = NULL,
   \item{separate}{\code{should clusters be plotted in subsequent figures}}
   \item{revpal}{\code{should the colorpalette be inverted}}
   \item{size}{\code{should the size of each cluster be added to the title}}
+  \item{smooth}{\code{should quantiles be smoothed}}
+  \item{df}{\code{degrees of freedom}}
   \item{alpha}{\code{alpha value for color opacity}}
   \item{\dots}{\code{additional parameters to be passed to points and plot}}
 }

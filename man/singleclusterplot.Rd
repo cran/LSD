@@ -3,7 +3,7 @@
 \title{Single clusterplot}
 \description{Progression plot for two-dimensional data to be used by clusterplot.}
 \usage{
-singleclusterplot(clusmat, at = NULL, fromto = c(0.05, 0.95), colpal = "standardheat", nrcolors = 25, outer.col = "light grey", revpal = FALSE, alpha = NULL, quartiles.col = c("black", "grey", "grey"), add.quartiles = TRUE)
+singleclusterplot(clusmat, at = NULL, fromto = c(0.05, 0.95), colpal = "standardheat", nrcolors = 25, outer.col = "light grey", revpal = FALSE, alpha = NULL, quartiles.col = c("black", "grey", "grey"), add.quartiles = TRUE, smooth = FALSE, df = 3)
 }
 \arguments{
   \item{clusmat}{\code{matrix with numerical entries, quantiles of rows will define colors}}
@@ -16,6 +16,8 @@ singleclusterplot(clusmat, at = NULL, fromto = c(0.05, 0.95), colpal = "standard
   \item{alpha}{\code{alpha value for color opacity}}
   \item{quartiles.col}{\code{color of quartile lines}}
   \item{add.quartiles}{\code{should the quartile lines be plotted}}
+  \item{smooth}{\code{should quantiles be smoothed}}
+  \item{df}{\code{degrees of freedom}}
 }
 \author{Achim Tresch, Bjoern Schwalb}
 \seealso{\code{\link{clusterplot}},\code{\link{heatboxplot}},\code{\link{LSD.demo.tour}}}

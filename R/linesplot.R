@@ -1,5 +1,11 @@
-linesplot <-
-function(x, 						# data as vector, matrix, list or data.frame
+
+
+###############################################
+### linesplot (one-dimensional scatterplot) ###
+###############################################
+
+
+linesplot = function(x, 						# data as vector, matrix, list or data.frame
                      labels = NULL, 			# vector of labels
                      col = "black", 			# standard color
 					 cols = NULL, 				# vector of colors
@@ -36,4 +42,29 @@ for (j in 1:length(x)){for (i in x[[j]]){lines(c(j-cexbox/2,j+cexbox/2),c(i,i),l
 if (addboxes){boxplot(x,add=TRUE,col="transparent",xlim=c(0.5,length(x)+0.5),ylim=ylim,width=NULL,boxwex=boxwex,outline=outline,axes=FALSE,border=border,lwd=lwd,range=range)}                                 
 par(cex.axis = par.axis.default)                                 
 }
+
+
+lplot = linesplot
+
+
+demo.linesplot = function()
+{
+par(mfrow=c(1,1))
+LSDshow("linesplot")
+devAskNewPage(ask = TRUE)
+x = rlnorm(500,mean=log(16),sd=0.3)
+linesplot(x,col="darkgreen",main="Linesplot of log-normal distributions")
+devAskNewPage(ask = TRUE)
+l = list()
+for (i in 1:10){l[[i]] = rnorm(200,mean=sqrt(i^2.5),sd=1+i/2)}
+linesplot(l,alpha=10,main="Linesplot of normal distributions",border="darkred",addboxes = TRUE,outline=FALSE)
+}
+
+#demo.linesplot()
+
+
+
+
+
+
 

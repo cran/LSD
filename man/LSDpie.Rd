@@ -1,10 +1,10 @@
-\name{piechart}
-\alias{piechart}
-\alias{demo.piechart}
-\title{Pie chart}
+\name{LSDpie}
+\alias{LSDpie}
+\alias{demo.LSDpie}
+\title{LSD Pie}
 \description{Piecharts at arbitrary position and radii.}
 \usage{
-piechart(props, x = 0, y = 0, radius = 1, cols = NULL, colpal = "pies", edges = 100, add = FALSE, xlim = NULL, ylim = NULL, main = "Piecharts", alpha = NULL, ...)
+LSDpie(props, x = 0, y = 0, radius = 1, cols = NULL, colpal = "pies", edges = 100, add = FALSE, xlim = NULL, ylim = NULL, main = "Piecharts", alpha = NULL, ...)
 }
 \arguments{
   \item{props}{\code{vector giving the relations of the pie pieces (need not to be normed)}}
@@ -23,5 +23,5 @@ piechart(props, x = 0, y = 0, radius = 1, cols = NULL, colpal = "pies", edges = 
 }
 \author{Achim Tresch, Bjoern Schwalb}
 \seealso{\code{\link{disco}},\code{\link{LSD.demo.tour}}}
-\examples{demo.piechart()}
+\examples{demo.LSDpie()}
 \keyword{hplot}

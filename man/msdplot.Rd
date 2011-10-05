@@ -2,12 +2,12 @@
 \alias{msdplot}
 \alias{demo.msdplot}
 \title{Msdplot}
-\description{Progression plot for two-dimensional data in several clusters, briefly a boxplot over time}
+\description{Progression plot for two-dimensional data in several clusters}
 \usage{
 msdplot(x, label = NULL, at = NULL, xlim = NULL, ylim = NULL, xlab = "timepoints", ylab = "values", main = "Msdplot", xaxt = "s", xlabels = NULL, las = 1, separate = TRUE, size = FALSE, col = NULL, bars = TRUE, alpha = 50, ...)
 }
 \arguments{
-  \item{x}{\code{matrix with numerical entries, quantiles of rows will define lines}}
+  \item{x}{\code{matrix with numerical entries, means and standard deviations of rows will define lines}}
   \item{label}{\code{vector with labels, if multiple clusters should be plotted}}
   \item{at}{\code{at which x-positions the columns should occur}}
   \item{xlim}{\code{xlimits, standard graphics parameter}}

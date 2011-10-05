@@ -4,7 +4,7 @@
 \title{Heat pairs}
 \description{Colored pairwise scatterplots based on a 2d density esimates computed by kde2d.}
 \usage{
-heatpairs(mat, main = "Heatpairs", xlim = NULL, ylim = NULL, labels = NULL, add.points = FALSE, group = NULL, color.group = "magenta", method = "spearman", colpal = "heat", pch = 19, cexplot = 0.5, ncol = 30, grid = 100, alpha = NULL, add.contour = FALSE, nlevels = 10, color.contour = "black", greyscale = FALSE, cexlabels = 3)
+heatpairs(mat, main = "Heatpairs", xlim = NULL, ylim = NULL, labels = NULL, add.points = FALSE, group = NULL, color.group = "magenta", method = "spearman", colpal = "heat", pch = 19, cexplot = 0.5, ncol = 30, grid = 100, alpha = NULL, add.contour = FALSE, nlevels = 10, color.contour = "black", greyscale = FALSE, ...)
 }
 \arguments{
   \item{mat}{\code{matrix}}
@@ -26,7 +26,7 @@ heatpairs(mat, main = "Heatpairs", xlim = NULL, ylim = NULL, labels = NULL, add.
   \item{nlevels}{\code{number of levels of the contour lines}}
   \item{color.contour}{\code{color of the contour lines}}
   \item{greyscale}{\code{should the colorpalette be in greyscales}}
-  \item{cexlabels}{\code{cex of the labels}}
+  \item{\dots}{\code{additional parameters to be passed to points and plot}}
 }
 \author{Bjoern Schwalb, Achim Tresch}
 \seealso{\code{\link{heatscatter}},\code{\link{heatmapairs}},\code{\link{LSD.demo.tour}}}

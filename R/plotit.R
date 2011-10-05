@@ -1,5 +1,11 @@
-plotit <-
-function(filename, 			# name of the plot to be saved with the format type suffix
+
+
+#######################################
+### plot plots in printable quality ###
+#######################################
+
+
+plotit = function(filename, 			# name of the plot to be saved with the format type suffix
                   sw = 2, 				# scaling factor of weight
                   sh = 2, 				# scaling factor of height
                   sres = 2, 			# scaling factor of the resolution
@@ -49,4 +55,14 @@ if (!notinR){x11(ww,wh,pointsize=x11pointsize)
              par(cex.lab = cex.lab)
              plotsfkt()}
 }
+
+
+demo.plotit = function(){
+x = rlnorm(500,mean=log(16),sd=0.3)
+plotsfkt = function(){linesplot(x)}
+plotit(filename = "test.jpg",sw = 2,sh = 2,sres = 2,plotsfkt = plotsfkt,ww = 7,wh = 7,saveit = TRUE)
+}
+
+#demo.plotit()
+
 

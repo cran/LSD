@@ -4,7 +4,7 @@
 \title{Heat MA pairs}
 \description{Colored pairwise MA plots based on 2d density estimates computed by kde2d.}
 \usage{
-heatmapairs(mat, main = "Heat MA pairs", xlim = NULL, ylim = NULL, labels = NULL, add.points = FALSE, group = NULL, color.group = "magenta", method = "spearman", colpal = "heat", pch = 19, cexplot = 0.5, ncol = 30, grid = 100, alpha = NULL, add.contour = FALSE, nlevels = 10, color.contour = "black", greyscale = FALSE, add.line = TRUE, color.line = "darkgrey", lwd = 2, cexlabels = 3)
+heatmapairs(mat, main = "Heat MA pairs", xlim = NULL, ylim = NULL, labels = NULL, add.points = FALSE, group = NULL, color.group = "magenta", method = "spearman", colpal = "heat", pch = 19, cexplot = 0.5, ncol = 30, grid = 100, alpha = NULL, add.contour = FALSE, nlevels = 10, color.contour = "black", greyscale = FALSE, add.line = TRUE, color.line = "darkgrey", lwd = 2, ...)
 }
 \arguments{
   \item{mat}{\code{matrix}}
@@ -29,7 +29,7 @@ heatmapairs(mat, main = "Heat MA pairs", xlim = NULL, ylim = NULL, labels = NULL
   \item{add.line}{\code{add horizontal line to the plot}}
   \item{color.line}{\code{color of the horizontal line}}
   \item{lwd}{\code{lwd, standard graphics parameter}}
-  \item{cexlabels}{\code{cex of the labels}}
+  \item{\dots}{\code{additional parameters to be passed to points and plot}}
 }
 \author{Bjoern Schwalb, Achim Tresch}
 \seealso{\code{\link{heatmaplot}},\code{\link{heatpairs}},\code{\link{LSD.demo.tour}}}

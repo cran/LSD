@@ -4,7 +4,7 @@
 \title{Plot a matrix}
 \description{Plot the rows of a matrix in colored lines.}
 \usage{
-plotmatrix(mat, xlim = NULL, ylim = NULL, xlab = NULL, ylab = NULL, main = NULL, type = "l", lwd = 2, at = NULL, xlabels = NULL, ltys = NULL, cols = NULL, ...)
+plotmatrix(mat, xlim = NULL, ylim = NULL, xlab = NULL, ylab = NULL, main = NULL, type = "l", lwd = 2, at = NULL, xlabels = NULL, ltys = NULL, add = FALSE,cols = NULL, ...)
 }
 \arguments{
   \item{mat}{\code{matrix}}
@@ -19,6 +19,7 @@ plotmatrix(mat, xlim = NULL, ylim = NULL, xlab = NULL, ylab = NULL, main = NULL,
   \item{xlabels}{\code{text added as x-axis labels}}
   \item{ltys}{\code{vector of linetypes}}
   \item{cols}{\code{vector of colors}}
+  \item{add}{\code{add to existing plot}}
   \item{\dots}{\code{additional parameters to be passed to points and plot}}
 }
 \author{Achim Tresch, Bjoern Schwalb}
