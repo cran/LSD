@@ -32,7 +32,7 @@ if (is.null(cols)) {cols = rep("black", nrow(mat))}else {if (length(cols) != nro
 	}
 }
 if(!add){plot(c(at[1],median(mat)),xlim=xlim,ylim=ylim,type="n",main=main,xaxt="n",ylab=ylab,xlab=xlab,...)}
-axis(side=1,at=at,labels=xlabels)
+axis(side=1,at=at,labels=xlabels,...)
 sapply(1:nrow(mat),function(x){points(at,mat[x,],col=cols[x],lty=ltys[x],type=type,lwd=lwd)})
 points(c(at[1],median(mat)),type = "n")
 }
@@ -50,5 +50,8 @@ mat = mat + rnorm(length(mat))/2
 plotmatrix(mat,cols=1:7,xlab="Columns of the matrix",ylab="Rows of the matrix")
 }
 
+
 #demo.plotmatrix()
+
+
 

@@ -117,15 +117,11 @@ demo.heatboxplot = function()
 	l = list()
 	for (i in 1:30){l[[i]] = rnorm(200,mean=sqrt(i^2.5),sd=1+i/2)}
 	heatboxplot(l,colpal="blues",main="blues",boxonly=TRUE,adjust=0.5,quant.from=0.05,quant.to=0.95,plot.boxplot=FALSE,cexbox=1,add.quartiles=FALSE)
-	legend("topleft",c("colpal = \"blues\"","boxonly = TRUE","adjust = 0.5","quant.from = 0.05","quant.to = 0.95","plot.boxplot = FALSE","cexbox = 1","add.quartiles = FALSE"))
+	legend("topleft",c("colpal = \"blues\"","boxonly = TRUE","adjust = 0.5","quant.from = 0.05","quant.to = 0.95","plot.boxplot = FALSE","cexbox = 1","add.quartiles = FALSE"),inset=0.01)
 }
 
 
 #demo.heatboxplot()
-
-
-
-
 
 
 

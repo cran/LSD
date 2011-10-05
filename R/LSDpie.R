@@ -49,5 +49,8 @@ probs = c(2,4,7,9,20,30,4,7,6,9,23)
 LSDpie(probs,add=TRUE,radius=2,colpal="primarycolors",x=3.25,y=-3.25)
 }
 
+
 #demo.LSDpie()
+
+
 

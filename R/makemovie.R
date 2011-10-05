@@ -45,11 +45,13 @@ fun = function(){n=sample(1:len,1); return(x[n:(n+len-1)])}
 mat = t(replicate(7,fun(),simplify=T))
 mat = mat + rnorm(length(mat))/2
 par(mfrow=c(1,2))
-plotmatrix(mat,main="Original measurements",col=1:7,type="o",xlab="timepoints",ylab="values")
+plotmatrix(mat,main="Original measurements",cols=1:7,type="o",xlab="timepoints",ylab="values")
 mov = makemovie(mat,timestep=0.2)
-plotmatrix(mov,main="Interpolated Movie",col=1:7,type="o",xlab="timepoints",ylab="values")
+plotmatrix(mov,main="Interpolated Movie",cols=1:7,type="o",xlab="timepoints",ylab="values")
 }
 
+
 #demo.makemovie()
+
 
 

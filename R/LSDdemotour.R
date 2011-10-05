@@ -30,5 +30,8 @@ LSD.demo.tour = function()
 	LSDshow("try the plotit function")
 }
 
+
 #LSD.demo.tour()
+
+
 

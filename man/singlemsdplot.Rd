@@ -6,11 +6,11 @@
 singlemsdplot(x, col = NULL, alpha = 50, bars = TRUE, at = NULL)
 }
 \arguments{
-  \item{x}{\code{data as matrix}}
-  \item{col}{\code{colors}}
-  \item{alpha}{\code{alpha value for color opacity}}
-  \item{bars}{\code{error bars}}
-  \item{at}{\code{at which x-positions the columns should occur}}
+  \item{x}{data as matrix}
+  \item{col}{colors}
+  \item{alpha}{alpha value for color opacity}
+  \item{bars}{error bars}
+  \item{at}{at which x-positions the columns should occur}
 }
 \author{Bjoern Schwalb}
 \seealso{\code{\link{msdplot}},\code{\link{heatboxplot}},\code{\link{LSD.demo.tour}}}

@@ -7,10 +7,10 @@
 distinctcolors(n = 20, bw = FALSE, show = FALSE, maxvalue = 255)
 }
 \arguments{
-  \item{n}{\code{number of colors to be used}}
-  \item{bw}{\code{should black and white be removed}}
-  \item{show}{\code{should colors be plotted}}
-  \item{maxvalue}{\code{maximal color value (rgb scheme)}}
+  \item{n}{number of colors to be used}
+  \item{bw}{should black and white be removed}
+  \item{show}{should colors be plotted}
+  \item{maxvalue}{maximal color value (rgb scheme)}
 }
 \author{Bjoern Schwalb}
 \seealso{\code{\link{disco}},\code{\link{display.colorpalette}},\code{\link{LSD.demo.tour}}}

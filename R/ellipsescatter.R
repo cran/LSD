@@ -1,5 +1,10 @@
 
 
+######################################################################################################
+### Ellipsescatter: A scatterplot with additional colored ellipses based on gaussianity assumption ###
+######################################################################################################
+
+
 ### ellipsescatter ###
 
 
@@ -8,6 +13,7 @@ ellipsescatter = function(x,y,groups,
 		bgcol	= "darkgrey",
 		scalesd = 1,
 		level = 0.75,
+		legend.cex = 1.5,
 		location = "topright",...
 )
 {
@@ -17,7 +23,7 @@ ellipsescatter = function(x,y,groups,
 	add.ellipses = function(x,y,col)
 	{
 		points(x,y,col=col,pch=20)
-		points(ellipse(scor(x,y,use="na.or.complete"),scale=c(sd(x,na.rm=TRUE)*scalesd,sd(y,na.rm=TRUE)*scalesd),centre=c(mean(x,na.rm=TRUE),mean(y,na.rm=TRUE)),level=level),type = 'l',col=col,lwd=3)
+		points(ellipse(round(cor(x,y,method="spearman",use="na.or.complete"),digits=2),scale=c(sd(x,na.rm=TRUE)*scalesd,sd(y,na.rm=TRUE)*scalesd),centre=c(mean(x,na.rm=TRUE),mean(y,na.rm=TRUE)),level=level),type = 'l',col=col,lwd=3)
 	}
 	plot(x,y,pch=20,col=bgcol,...)
 	legendtext = c()
@@ -25,7 +31,7 @@ ellipsescatter = function(x,y,groups,
 		add.ellipses(x[groups[[k]]],y[groups[[k]]],col=colors[k])
 		legendtext = c(legendtext,paste(names(groups)[k]," (",length(x[groups[[k]]][!is.na(x[groups[[k]]])]),")",sep=""))
 	}
-	legend(location,legendtext,pt.bg=colors,col=rep("black",grouplength),bg="white",pch=21,cex=1)
+	legend(location,legendtext,pt.bg=colors,col=rep("black",grouplength),bg="white",pch=21,cex=legend.cex,inset=0.01)
 }	
 
 
@@ -46,5 +52,8 @@ demo.ellipsescatter = function()
 	ellipsescatter(x,y,xlab="x vector",ylab="y vector",groups = list("Group1" = 1:50,"Group2" = 51:100,"Group3" = 101:150),colors = c("darkgreen","darkred","darkblue"),location = "topleft")
 }
 
+
 #demo.ellipsescatter()
+
+
 

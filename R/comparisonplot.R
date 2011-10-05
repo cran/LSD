@@ -135,7 +135,11 @@ devAskNewPage(ask = TRUE)
 cplot(x,y,xlab="x vector",ylab="y vector",histbreaks=30,colpal="matlablike",pimp=TRUE,adjust=0.5)
 }
 
+
 demo.cplot = demo.comparisonplot
 
+
 #demo.comparisonplot()
+
+
 

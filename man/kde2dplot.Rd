@@ -6,12 +6,12 @@
 kde2dplot(x, y, grid = 100, ncol = 30, nlevels = 10, main = "kde2d")
 }
 \arguments{
-  \item{x}{\code{x-vector}}
-  \item{y}{\code{y-vector}}
-  \item{grid}{\code{size of the grid ( see kde2d )}}
-  \item{ncol}{\code{the number of colors to use}}
-  \item{nlevels}{\code{number of levels}}
-  \item{main}{\code{title of the plot}}
+  \item{x}{x-vector}
+  \item{y}{y-vector}
+  \item{grid}{size of the grid ( see kde2d )}
+  \item{ncol}{the number of colors to use}
+  \item{nlevels}{number of levels}
+  \item{main}{title of the plot}
 }
 \author{Romain Francois}
 \seealso{\code{\link{heatscatter}},\code{\link{LSD.demo.tour}}}

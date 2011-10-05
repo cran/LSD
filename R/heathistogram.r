@@ -57,6 +57,8 @@ devAskNewPage(ask = TRUE)
 heathist(x,xlab="x",ylab="density",colpal = "matlablike")
 }
 
+
 #demo.heathist()
+
 
 

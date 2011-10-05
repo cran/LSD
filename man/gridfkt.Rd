@@ -7,11 +7,11 @@
 gridfkt(lim, lty = 2, lwd = 1, addlines = TRUE, folds = TRUE)
 }
 \arguments{
-  \item{lim}{\code{limits for quadratic plots}}
-  \item{lty}{\code{linetype to be used}}
-  \item{lwd}{\code{linewidth to be used}}
-  \item{addlines}{\code{should fold lines be added}}
-  \item{folds}{\code{should labels be added to fold lines}}
+  \item{lim}{limits for quadratic plots}
+  \item{lty}{linetype to be used}
+  \item{lwd}{linewidth to be used}
+  \item{addlines}{should fold lines be added}
+  \item{folds}{should labels be added to fold lines}
 }
 \author{Bjoern Schwalb}
 \seealso{\code{\link{LSD.demo.tour}}}

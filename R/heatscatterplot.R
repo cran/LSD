@@ -5,6 +5,35 @@
 ################################################################################################################################################
 
 
+### adjusted kde2d due to bandwidth error (see code below) ###
+
+
+kde2d.adj = function (x, y, h, n = 25, lims = c(range(x), range(y))) 
+{
+	nx <- length(x)
+	if (length(y) != nx) 
+		stop("data vectors must be the same length")
+	if (any(!is.finite(x)) || any(!is.finite(y))) 
+		stop("missing or infinite values in the data are not allowed")
+	if (any(!is.finite(lims))) 
+		stop("only finite values are allowed in 'lims'")
+	n <- rep(n, length.out = 2L)
+	gx <- seq.int(lims[1L], lims[2L], length.out = n[1L])
+	gy <- seq.int(lims[3L], lims[4L], length.out = n[2L])
+	if (missing(h)) {
+		bx = bandwidth.nrd(x)
+		by = bandwidth.nrd(y)
+		if (all(c(bx,by) == 0)){h = rep(0.01,2)} else if (any(c(bx,by) == 0)){h = rep(max(bx,by),2)} else {h = c(bx,by)}
+	} else h = rep(h, length.out = 2L)
+	h <- h/4
+	ax <- outer(gx, x, "-")/h[1L]
+	ay <- outer(gy, y, "-")/h[2L]
+	z <- tcrossprod(matrix(dnorm(ax), , nx), matrix(dnorm(ay), 
+					, nx))/(nx * h[1L] * h[2L])
+	list(x = gx, y = gy, z = z)
+}
+
+
 ### the kde2dplot routine is a function from the R Graph Gallery ###
 
 
@@ -16,7 +45,7 @@ kde2dplot = function(x,y, 				# a 2d density computed by kde2d
 {
 if (!is.vector(x) | !is.vector(y)) stop("First two argument must be vectors !")
 if (length(x) != length(y)) stop("Data vectors must be of the same length !")
-d = kde2d(x,y,n=grid)
+d = kde2d.adj(x,y,n=grid)
 z   <- d$z
 nrz <- nrow(z)
 ncz <- ncol(z)
@@ -80,7 +109,7 @@ if (cor){if (is.null(main)){main = paste("Heatscatter  cor = ",round(cor(x,y,met
 else {if (is.null(main)){main = "Heatscatter"}
       else {main = main}}
 
-d <- kde2d(x,y,n=grid)
+d <- kde2d.adj(x,y,n=grid)
 
 xdiscrete = todiscrete(x,min(x),max(x),bins=grid)
 ydiscrete = todiscrete(y,min(y),max(y),bins=grid)
@@ -116,6 +145,7 @@ heatscatter(x,y,colpal="bl2gr2rd",main="bl2gr2rd",cor=FALSE)
 heatscatter(x,y,colpal="heat",main="greyscales with add.contour=TRUE",cor=FALSE,,add.contour=TRUE,color.contour="red",greyscale=TRUE)
 heatscatter(x,y,colpal="spectral",main="spectral with add.contour=TRUE",cor=FALSE,add.contour=TRUE)
 }
+
 
 #demo.heatscatter()
 
@@ -164,7 +194,7 @@ if (length(sound)==0) stop("There are no valid point pairs to plot")
 x = x[sound]
 y = y[sound]
 
-d <- kde2d(x,y,n=grid)
+d <- kde2d.adj(x,y,n=grid)
 
 xdiscrete = todiscrete(x,min(x),max(x),bins=grid)
 ydiscrete = todiscrete(y,min(y),max(y),bins=grid)
@@ -190,6 +220,7 @@ heatpairs = function(mat, 						# matrix
 					 colpal = "heat", 			# which colorpalette should be chosen ( see disco() )
 					 pch=19, 					# plotting character
 					 cexplot=0.5, 				# cex of the points
+					 cor.cex = 2.5,				# cex of the correlation
 					 ncol=30, 					# the number of colors to use
 					 grid=100, 					# size of the grid
 					 alpha = NULL, 				# alpha value for color opacity
@@ -199,10 +230,10 @@ heatpairs = function(mat, 						# matrix
 					 greyscale = FALSE,...) 	# should the colorpalette be in greyscales
 {
 if (!is.matrix(mat)) stop("First argument must be a matrix !")
-if (is.null(xlim)){xlim = c(min(mat),max(mat))}
-if (is.null(ylim)){ylim = c(min(mat),max(mat))}
+if (is.null(xlim)){xlim = c(min(mat,na.rm=TRUE),max(mat,na.rm=TRUE))}
+if (is.null(ylim)){ylim = c(min(mat,na.rm=TRUE),max(mat,na.rm=TRUE))}
 if(is.null(labels)){labels = colnames(mat)}
-pairs(mat,labels=labels,xlim=xlim,ylim=ylim,lower.panel=function(x,y,...){text(sum(xlim)/2,sum(ylim)/2,round(cor(x,y,method=method),digits=2),cex = 3)},main=main,upper.panel=function(x,y,...){heatscatterpoints(x,y,colpal=colpal,pch=pch,cexplot=cexplot,ncol=ncol,grid=grid,alpha=alpha,add.contour=add.contour,nlevels=nlevels,color.contour=color.contour,greyscale=greyscale,...);abline(a=0,b=1);if (add.points){points(x[rownames(mat) %in% group],y[rownames(mat) %in% group],col=color.group,...)}},...)
+pairs(mat,labels=labels,xlim=xlim,ylim=ylim,lower.panel=function(x,y,...){text(sum(xlim)/2,sum(ylim)/2,round(cor(x,y,method=method,use="na.or.complete"),digits=2),cex=cor.cex)},main=main,upper.panel=function(x,y,...){heatscatterpoints(x,y,colpal=colpal,pch=pch,cexplot=cexplot,ncol=ncol,grid=grid,alpha=alpha,add.contour=add.contour,nlevels=nlevels,color.contour=color.contour,greyscale=greyscale,...);abline(a=0,b=1);if (add.points){points(x[rownames(mat) %in% group],y[rownames(mat) %in% group],col=color.group,...)}},...)
 }
 
 
@@ -232,6 +263,7 @@ heatpairs(mat,main="Heatpairs in greyscales with add.contour=TRUE",method="pears
 
 
 demo.heatpairs = demo.heatscatterpoints
+
 
 #demo.heatscatterpoints()
 
@@ -290,6 +322,7 @@ heatmaplot(x,y,colpal="heat",main="greyscales with add.contour=TRUE",cor=FALSE,,
 heatmaplot(x,y,colpal="spectral",main="spectral with add.contour=TRUE",cor=FALSE,add.contour=TRUE)
 }
 
+
 #demo.heatmaplot()
 
 
@@ -338,6 +371,7 @@ heatmapairs = function(mat, 					# matrix
 					colpal = "heat", 			# which colorcolpal should be chosen ( see disco() )
 					pch=19, 					# plotting character
 					cexplot=0.5, 				# cex of the points
+					cor.cex = 2.5,				# cex of the correlation
 					ncol=30, 					# the number of colors to use
 					grid=100, 					# size of the grid
 					alpha = NULL, 				# alpha value for color opacity
@@ -350,11 +384,11 @@ heatmapairs = function(mat, 					# matrix
 					lwd = 2,...)				# lwd, standard graphics parameter
 {
 if (!is.matrix(mat)) stop("First argument must be a matrix !")
-if (is.null(xlim)){xlim = c(min(mat),max(mat))}
-if (is.null(ylim)){ylim = c(min(mat),max(mat))}
+if (is.null(xlim)){xlim = c(min(mat,na.rm=TRUE),max(mat,na.rm=TRUE))}
+if (is.null(ylim)){ylim = c(min(mat,na.rm=TRUE),max(mat,na.rm=TRUE))}
 if(is.null(labels)){labels = colnames(mat)}
 mapoints = function(x,y,...){points((x + y)/2,x - y,...)}
-pairs(mat,labels=labels,xlim=xlim,ylim=ylim,lower.panel=function(x,y,...){text(sum(xlim)/2,sum(ylim)/2,round(cor(x,y,method=method),digits=2),cex = 3)},main=main,upper.panel=function(x,y,...){heatmapoints(x,y,colpal=colpal,pch=pch,cexplot=cexplot,ncol=ncol,grid=grid,alpha=alpha,add.contour=add.contour,nlevels=nlevels,color.contour=color.contour,greyscale=greyscale,...);if (add.line){abline(h=0,col=color.line,lwd=lwd)};if (add.points){mapoints(x[rownames(mat) %in% group],y[rownames(mat) %in% group],col=color.group,...)}},...)
+pairs(mat,labels=labels,xlim=xlim,ylim=ylim,lower.panel=function(x,y,...){text(sum(xlim)/2,sum(ylim)/2,round(cor(x,y,method=method,use="na.or.complete"),digits=2),cex = 3)},main=main,upper.panel=function(x,y,...){heatmapoints(x,y,colpal=colpal,pch=pch,cexplot=cexplot,ncol=ncol,grid=grid,alpha=alpha,add.contour=add.contour,nlevels=nlevels,color.contour=color.contour,greyscale=greyscale,...);if (add.line){abline(h=0,col=color.line,lwd=lwd)};if (add.points){mapoints(x[rownames(mat) %in% group],y[rownames(mat) %in% group],col=color.group,...)}},...)
 }
 
 
@@ -385,5 +419,8 @@ heatmapairs(mat,main="Heatmapairs in greyscales with add.contour=TRUE",method="p
 
 demo.heatmapairs = demo.heatmapoints
 
+
 #demo.heatmapoints()
+
+
 

@@ -7,7 +7,7 @@
 windowxy(windows = 1)
 }
 \arguments{
-  \item{windows}{\code{number of windows}}
+  \item{windows}{number of windows}
 }
 \author{Bjoern Schwalb, Achim Tresch}
 \seealso{\code{\link{LSD.demo.tour}}}

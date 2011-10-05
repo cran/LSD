@@ -7,8 +7,8 @@
 convertcolor(color, alpha = NULL)
 }
 \arguments{
-  \item{color}{\code{vector of colors}}
-  \item{alpha}{\code{alpha value for color opacity}}
+  \item{color}{vector of colors}
+  \item{alpha}{alpha value for color opacity}
 }
 \author{Bjoern Schwalb}
 \seealso{\code{\link{colorpalette}},\code{\link{convertgrey}},\code{\link{LSD.demo.tour}}}

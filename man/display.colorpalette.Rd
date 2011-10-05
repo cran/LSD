@@ -7,9 +7,9 @@
 display.colorpalette(name, n = NULL, alpha = NULL)
 }
 \arguments{
-  \item{name}{\code{name of the colorpalette}}
-  \item{n}{\code{number of colors to be used}}
-  \item{alpha}{\code{alpha value for color opacity}}
+  \item{name}{name of the colorpalette}
+  \item{n}{number of colors to be used}
+  \item{alpha}{alpha value for color opacity}
 }
 \author{Bjoern Schwalb}
 \seealso{\code{\link{disco}},\code{\link{distinctcolors}},\code{\link{LSD.demo.tour}}}

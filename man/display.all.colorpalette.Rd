@@ -9,7 +9,7 @@ disco(nr = 11)
 display.all.colorpalette(nr = 11)
 }
 \arguments{
-  \item{nr}{\code{number of colors to be used}}
+  \item{nr}{number of colors to be used}
 }
 \author{Bjoern Schwalb}
 \seealso{\code{\link{display.colorpalette}},\code{\link{distinctcolors}},\code{\link{LSD.demo.tour}}}

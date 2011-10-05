@@ -30,7 +30,7 @@ if (is.matrix(x)){x = as.list(as.data.frame(x))}
 if (is.null(labels)){labels = labels(x)}
 if (is.null(cols)){cols = rep(convertcolor(col,alpha),length(x))} else{cols = convertcolor(cols,alpha)}
 if (!is.null(xlim)){print("xlim argument will be ignored !")}
-if (is.null(ylim)){ylim = range(unlist(x))}
+if (is.null(ylim)){ylim = range(unlist(x),na.rm=TRUE)}
 if (!is.null(xlab)){print("xlab argument will be ignored ! Use labels instead !")}
 if (length(x) == 1){cexbox = 0.4}
 if (length(x) > 1){boxwex = cexbox} else{boxwex = NULL}
@@ -60,11 +60,8 @@ for (i in 1:10){l[[i]] = rnorm(200,mean=sqrt(i^2.5),sd=1+i/2)}
 linesplot(l,alpha=10,main="Linesplot of normal distributions",border="darkred",addboxes = TRUE,outline=FALSE)
 }
 
+
 #demo.linesplot()
-
-
-
-
 
 
 

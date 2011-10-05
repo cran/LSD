@@ -8,7 +8,7 @@
 ### singleclusterplot ###
 
 
-singleclusterplot = function(clusmat, 				# matrix with numerical entries, quantiles of rows will define colors
+singleclusterplot = function(clusmat, 				# matrix or list with numerical entries, quantiles of rows will define colors
 		at = NULL, 									# at which x-positions the columns should occur 
 		fromto = c(0.05,0.95), 						# the range of quantiles that should be plotted
 		colpal = "standardheat", 					# which colorpalette should be chosen ( see disco() )
@@ -34,9 +34,9 @@ if (length(colpal)==1){colpal = colorpalette(colpal,nrcolors,alpha)
                       } else 	 colpal = colorRampPalette(colpal)(nrcolors)
 colpal = colpal[c(nrcolpal:1,2:nrcolpal)]
 if (is.matrix(clusmat)){
-	qline = apply(clusmat,2,quantile,probs=seq(fromto[1],fromto[2],length=nrquants))
+	qline = apply(clusmat,2,quantile,probs=seq(fromto[1],fromto[2],length=nrquants),na.rm=TRUE)
 } else if (is.list(clusmat)){
-	qline = lapply(clusmat,quantile,probs=seq(fromto[1],fromto[2],length=nrquants))
+	qline = lapply(clusmat,quantile,probs=seq(fromto[1],fromto[2],length=nrquants),na.rm=TRUE)
 	qline = sapply(qline,c)
 }
 if (smooth){
@@ -46,7 +46,7 @@ if (smooth){
 	}
 }
 for (j in 1:(nrquants-1)){polygon(at[c(1:probes,probes:1)],c(qline[j,],qline[j+1,probes:1]),col = colpal[j],lty=0)}
-if (add.quartiles){drawline(qline[2*firstquart+2,],col=quartiles.col[1],lwd=2) #substr(colpal[25],1,7)
+if (add.quartiles){drawline(qline[2*firstquart+2,],col=quartiles.col[1],lwd=2)
 		               drawline(qline[firstquart+1,],col=convertcolor(quartiles.col[2],alpha),lwd=2)
 	                 drawline(qline[3*firstquart+3,],col=convertcolor(quartiles.col[3],alpha),lwd=2)}
 }
@@ -55,7 +55,7 @@ if (add.quartiles){drawline(qline[2*firstquart+2,],col=quartiles.col[1],lwd=2) #
 ### clusterplot ###
 
 
-clusterplot = function(clusmat, 					# matrix with numerical entries, quantiles of rows will define colors
+clusterplot = function(clusmat, 					# matrix or list with numerical entries, quantiles of rows will define colors
 		label = NULL, 								# if multiple clusters should be plotted: vector with labels, which assigns rows to clusters
 		at = NULL, 									# at which x-positions the columns should occur
 		main = "Clusterplot", 						# the title(s) of the plot(s)
@@ -67,7 +67,7 @@ clusterplot = function(clusmat, 					# matrix with numerical entries, quantiles 
 		xlabels = NULL, 							# text added as x-axis labels
 		las = 1, 									# las=1: horizontal text, las=2: vertical text (x-axis labels)
 		fromto = c(0.05,0.95), 						# the range of quantiles that should be plotted
-		colpal = "standardheat",	 				# which colorpalette should be chosen ( see disco() )
+		colpal = "standardheat",	 				# colorpalettes assigned to sorted labels ( see disco() )
 		nrcolors = 25, 								# the number of colors to use
 		outer.col = "light grey", 					# color of the outlier lines
 		quartiles.col = c("black","grey","grey"), 	# color of quartile lines
@@ -80,12 +80,17 @@ clusterplot = function(clusmat, 					# matrix with numerical entries, quantiles 
 		df = 3,...)									# degrees of freedom
 {
 if (!is.matrix(clusmat) & !is.list(clusmat)) stop("First argument must be a matrix or a list !")
+if (is.matrix(clusmat)){
+	if (sum(is.na(clusmat)) > 0) print("Be careful: Your data contains NAs !")
+} else if (is.list(clusmat)){
+	if (sum(is.na(unlist(clusmat))) > 0) print("Be careful: Your data contains NAs !")
+}
 if (is.null(at)) if (is.matrix(clusmat)){at=1:ncol(clusmat)} else if (is.list(clusmat)){at=1:length(clusmat)}
 probes = length(at)
 if (is.null(xlim)) xlim=c(min(at),max(at))
 maxp = xlim[2]
 minp = xlim[1]
-if (is.null(ylim)) if (is.matrix(clusmat)){ylim=c(min(clusmat),max(clusmat))} else if (is.list(clusmat)){ylim=c(min(unlist(clusmat)),max(unlist(clusmat)))}
+if (is.null(ylim)) if (is.matrix(clusmat)){ylim=c(min(clusmat,na.rm=TRUE),max(clusmat,na.rm=TRUE))} else if (is.list(clusmat)){ylim=c(min(unlist(clusmat),na.rm=TRUE),max(unlist(clusmat),na.rm=TRUE))}
 if (is.null(xlabels)) xlabels = 1:length(at)
 # one cluster in one plot
 if (is.null(label)){if (size){main = paste(main,"#",nrow(clusmat))}
@@ -95,6 +100,7 @@ if (is.null(label)){if (size){main = paste(main,"#",nrow(clusmat))}
 # several clusters in one plot or several plots
 if (!is.null(label)){clusternames = sort(unique(label))
                      nrclusters = length(clusternames)
+					 if (!is.matrix(clusmat)) stop("First argument must be a matrix for multiple clusters !")
                      clustersets = split(1:nrow(clusmat),factor(label))
                      if (!is.list(colpal)) colpal = as.list(colpal)
                      if (length(colpal)<nrclusters) colpal = rep(colpal,nrclusters)	
@@ -135,6 +141,8 @@ devAskNewPage(ask = TRUE)
 clusterplot(clus,label=labs,main="Clustered data",colpal=c("standardheat","crazyblue","crazyred","standardtopo"),add.quartiles=FALSE)
 }
 
+
 #demo.clusterplot()
+
 
 

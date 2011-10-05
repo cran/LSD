@@ -6,18 +6,18 @@
 singleclusterplot(clusmat, at = NULL, fromto = c(0.05, 0.95), colpal = "standardheat", nrcolors = 25, outer.col = "light grey", revpal = FALSE, alpha = NULL, quartiles.col = c("black", "grey", "grey"), add.quartiles = TRUE, smooth = FALSE, df = 3)
 }
 \arguments{
-  \item{clusmat}{\code{matrix with numerical entries, quantiles of rows will define colors}}
-  \item{at}{\code{at which x-positions the columns should occur}}
-  \item{fromto}{\code{the range of quantiles that should be plotted}}
-  \item{colpal}{\code{which colorpalette should be chosen ( see disco() )}}
-  \item{nrcolors}{\code{the number of colors to use}}
-  \item{outer.col}{\code{color of the outlier lines}}
-  \item{revpal}{\code{should the colorpalette be inverted}}
-  \item{alpha}{\code{alpha value for color opacity}}
-  \item{quartiles.col}{\code{color of quartile lines}}
-  \item{add.quartiles}{\code{should the quartile lines be plotted}}
-  \item{smooth}{\code{should quantiles be smoothed}}
-  \item{df}{\code{degrees of freedom}}
+  \item{clusmat}{matrix with numerical entries, quantiles of rows will define colors}
+  \item{at}{at which x-positions the columns should occur}
+  \item{fromto}{the range of quantiles that should be plotted}
+  \item{colpal}{which colorpalette should be chosen ( see disco() )}
+  \item{nrcolors}{the number of colors to use}
+  \item{outer.col}{color of the outlier lines}
+  \item{revpal}{should the colorpalette be inverted}
+  \item{alpha}{alpha value for color opacity}
+  \item{quartiles.col}{color of quartile lines}
+  \item{add.quartiles}{should the quartile lines be plotted}
+  \item{smooth}{should quantiles be smoothed}
+  \item{df}{degrees of freedom}
 }
 \author{Achim Tresch, Bjoern Schwalb}
 \seealso{\code{\link{clusterplot}},\code{\link{heatboxplot}},\code{\link{LSD.demo.tour}}}
