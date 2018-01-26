@@ -57,6 +57,14 @@ heatscatterpoints = function(x,y,pch = 19,cexplot = 0.5,nrcol = 30,grid = 100,co
 	if (length(sound)==0) stop("There are no valid point pairs to plot!")
 	x = x[sound]
 	y = y[sound]
+	if (!is.null(xlim)){cut = x >= xlim[1] & x <= xlim[2]
+	x = x[cut]
+	y = y[cut]
+	}
+	if (!is.null(ylim)){cut = y >= ylim[1] & y <= ylim[2]
+	y = y[cut]
+	x = x[cut]
+	}
 	
 	# color handling #
 	
@@ -214,7 +222,15 @@ heatscatter = function(x,y,pch = 19,cexplot = 0.5,nrcol = 30,grid = 100,colpal =
 	if (length(sound)==0) stop("There are no valid point pairs to plot!")
 	x = x[sound]
 	y = y[sound]
-		
+	if (!is.null(xlim)){cut = x >= xlim[1] & x <= xlim[2]
+	x = x[cut]
+	y = y[cut]
+	}
+	if (!is.null(ylim)){cut = y >= ylim[1] & y <= ylim[2]
+	y = y[cut]
+	x = x[cut]
+	}
+	
 	# handle 'log' option #
 	
 	if (log == ""){
@@ -280,6 +296,7 @@ LSD.heatscatter = heatscatter
 #' @param nlevels an integer giving the number of levels of the contour lines.
 #' @param color.contour R build-in color for the contour lines.
 #' @param greyscale logical: if \code{TRUE} (\code{FALSE} by default), the used colorpalette is converted to greyscales.
+#' @param log a character string which contains "x" if the x axis is to be logarithmic, "y" if the y axis is to be logarithmic and "xy" or "yx" if both axes are to be logarithmic.
 #' @param ... additional parameters to be passed to points and plot
 #' @author Bjoern Schwalb
 #' @seealso \code{\link{comparisonplot}}, \code{\link{demotour}}, \code{\link{disco}}, \code{\link{colorpalette}}
@@ -296,13 +313,23 @@ LSD.heatscatter = heatscatter
 #' @keywords scatterplot, heatcolors
 
 
-heatpairs = function(mat,main = "heatpairs",xlim = NULL,ylim = NULL,labels = NULL,add.points = FALSE,group = NULL,color.group = "magenta",method = "spearman",colpal = "heat",simulate = FALSE,daltonize = FALSE,cvd = "p",alpha = NULL,rev = FALSE,pch=19,cexplot=0.5,cor.cex = 2.5,nrcol=30,grid=100,only = "none",add.contour = FALSE,nlevels = 10,color.contour = "black",greyscale = FALSE,...)
+heatpairs = function(mat,main = "heatpairs",xlim = NULL,ylim = NULL,labels = NULL,add.points = FALSE,group = NULL,color.group = "magenta",method = "spearman",colpal = "heat",simulate = FALSE,daltonize = FALSE,cvd = "p",alpha = NULL,rev = FALSE,pch=19,cexplot=0.5,cor.cex = 2.5,nrcol=30,grid=100,only = "none",add.contour = FALSE,nlevels = 10,color.contour = "black",greyscale = FALSE,log = "",...)
 {
 	if (!is.matrix(mat)) stop("First argument must be a matrix !")
 	if (is.null(xlim)){xlim = c(min(mat,na.rm=TRUE),max(mat,na.rm=TRUE))}
 	if (is.null(ylim)){ylim = c(min(mat,na.rm=TRUE),max(mat,na.rm=TRUE))}
 	if(is.null(labels)){labels = colnames(mat)}
-	pairs(mat,labels=labels,xlim=xlim,ylim=ylim,lower.panel=function(x,y,...){text(sum(xlim)/2,sum(ylim)/2,round(cor(x,y,method=method,use="na.or.complete"),digits=2),cex=cor.cex)},main=main,upper.panel=function(x,y,...){heatscatterpoints(x,y,colpal=colpal,pch=pch,cexplot=cexplot,nrcol=nrcol,grid=grid,simulate=simulate,daltonize=daltonize,cvd=cvd,alpha=alpha,rev=rev,only=only,add.contour=add.contour,nlevels=nlevels,color.contour=color.contour,greyscale=greyscale,...);abline(a=0,b=1);if (add.points){points(x[rownames(mat) %in% group],y[rownames(mat) %in% group],col=color.group,...)}},...)
+  
+  # handle 'log' option #
+  
+  if (log == ""){
+    valid = 1:dim(mat)[1]
+  } else if (log %in% c("x","y","xy","yx")){
+    valid = apply(mat,1,function(x){all(x > 0)})
+  }
+  mat = mat[valid,]
+
+	pairs(mat,labels=labels,xlim=xlim,ylim=ylim,lower.panel=function(x,y,...){{if (log == ""){x.pos = diff(xlim)/2 + xlim[1];y.pos = diff(ylim)/2 + ylim[1]} else if (log == "x"){x.pos = 10^(diff(log(xlim,10))/2 + log(xlim,10)[1]);y.pos = diff(ylim)/2 + ylim[1]} else if (log == "y"){x.pos = diff(xlim)/2 + xlim[1];y.pos = 10^(diff(log(ylim,10))/2 + log(ylim,10)[1])} else if (log %in% c("xy","yx")){x.pos = 10^(diff(log(xlim,10))/2 + log(xlim,10)[1]);y.pos = 10^(diff(log(ylim,10))/2 + log(ylim,10)[1])}};text(x.pos,y.pos,round(cor(x,y,method=method,use="na.or.complete"),digits=2),cex=cor.cex)},main=main,upper.panel=function(x,y,...){heatscatterpoints(x,y,colpal=colpal,pch=pch,cexplot=cexplot,nrcol=nrcol,grid=grid,simulate=simulate,daltonize=daltonize,cvd=cvd,alpha=alpha,rev=rev,only=only,add.contour=add.contour,nlevels=nlevels,color.contour=color.contour,greyscale=greyscale,log = log,...);if (log == ""){abline(a=0,b=1)} else if (log == "x"){lines(seq(xlim[1],xlim[2],length.out = 100),seq(ylim[1],ylim[2],length.out = 100))} else if (log == "y"){lines(seq(xlim[1],xlim[2],length.out = 100),seq(ylim[1],ylim[2],length.out = 100))} else if (log %in% c("xy","yx")){abline(a=0,b=1)};if (add.points){points(x[rownames(mat) %in% group],y[rownames(mat) %in% group],col=color.group,log = log,...)}},log = log,...)
 }
 
 
