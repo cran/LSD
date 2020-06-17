@@ -94,7 +94,7 @@ LSD.heatbarplot = heatbarplot
 #' x = sign(x)*abs(x)^1.3
 #' 
 #' comparisonplot(x,y,histbreaks=30,pch=20)
-#' @keywords scatterplot, barplot
+#' @keywords scatterplot barplot
 
 
 comparisonplot = function(x,y,histbreaks = 30,adjust = 1,colpal = "heat",simulate = FALSE,daltonize = FALSE,cvd = "p",alpha = NULL,rev = FALSE,main = "comparisonplot",cor = FALSE,xlab = NULL,ylab = NULL,xlim = NULL,ylim = NULL,ab = FALSE,add.density = FALSE,col.density = "darkred",pimp = FALSE,...)

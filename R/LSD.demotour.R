@@ -11,7 +11,7 @@
 #' @author Bjoern Schwalb
 #' @seealso \code{\link{heatscatter}}, \code{\link{clusterplot}}, \code{\link{disco}}, \code{\link{colorpalette}}, \code{\link{daltonize}}
 #' @examples demotour()
-#' @keywords heatscatter, clusterplot, disco, colorpalette, daltonize
+#' @keywords heatscatter clusterplot disco colorpalette daltonize
 
 
 demotour = function()

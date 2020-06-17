@@ -17,7 +17,7 @@
 #' @references \url{http://www.daltonize.org}
 #' @examples daltonize("heat",cvd = "d")
 #' daltonize("colorblind",cvd = "p")
-#' @keywords daltonize, colorblind
+#' @keywords daltonize colorblind
 
 
 daltonize = function(colpal,cvd = "p",show = TRUE)
@@ -202,7 +202,7 @@ LSD.daltonize = daltonize
 #' @seealso \code{\link{disco}}, \code{\link{demotour}}
 #' @examples colorpalette("heat")
 #' colorpalette(c("darkred","grey","darkblue"),10)
-#' @keywords color, alpha
+#' @keywords color alpha
 
 
 colorpalette = function(colpal,nrcol = NULL,simulate = FALSE,daltonize = FALSE,cvd = "p",alpha = NULL,rev = FALSE)
@@ -307,7 +307,7 @@ LSD.colorpalette = colorpalette
 #' @seealso \code{\link{colorpalette}}, \code{\link{demotour}}
 #' @examples disco()
 #' disco("rdbu",10)
-#' @keywords color, alpha
+#' @keywords color alpha
 
 
 disco = function(colpal = NULL,nrcol = NULL,alpha = NULL)
@@ -666,7 +666,7 @@ LSD.complementarycolor = complementarycolor
 #' @author Bjoern Schwalb
 #' @seealso \code{\link{disco}}, \code{\link{colorpalette}}, \code{\link{demotour}}
 #' @examples convertgrey(c("red","green","blue"))
-#' @keywords greyscale, color
+#' @keywords greyscale color
 
 
 convertgrey = function(cols,alpha = NULL)

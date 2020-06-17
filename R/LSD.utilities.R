@@ -93,7 +93,7 @@ LSD.windowxy = windowxy
 #' @examples emptyplot(c(-5,5),c(-5,5))
 #' labels = c("2 fold","4 fold","8 fold")
 #' webdesign(c(-5,5),c(-5,5),lty = 2,xlabels = labels,ylabels = labels)
-#' @keywords grid, web
+#' @keywords grid web
 
 
 webdesign = function(xlim,ylim,colpal = "rdbu",xlabels = NULL,ylabels = NULL,...)

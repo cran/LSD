@@ -1,6 +1,6 @@
 Package: LSD
-Version: 4.0-0
-Date: 2018-01-25
+Version: 4.1-0
+Date: 2020-06-16
 Title: Lots of Superior Depictions
 Author: Bjoern Schwalb [aut, cre],
 	Achim Tresch [aut],
@@ -11,8 +11,10 @@ Author: Bjoern Schwalb [aut, cre],
 	Bill Venables [ctb]
 Maintainer: Bjoern Schwalb <schwalb.bjoern@gmail.com>
 Description: Create lots of colorful plots in a plethora of variations. Try the LSD demotour().
-License: Unlimited
-Packaged: 2018-01-26 16:55:13 UTC; bschwal
+License: GPL-2 | GPL-3
+LazyData: true
+RoxygenNote: 7.1.0
 NeedsCompilation: no
+Packaged: 2020-06-17 09:20:26 UTC; bschwal
 Repository: CRAN
-Date/Publication: 2018-01-26 17:08:11 UTC
+Date/Publication: 2020-06-17 09:50:18 UTC

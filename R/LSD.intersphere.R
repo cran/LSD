@@ -33,7 +33,7 @@
 #' 
 #' colors = c("orange","skyblue","green","purple")
 #' intersphere(data,colors,expand.circles = 0.5,expand.lims = 0.5)
-#' @keywords intersphere, Venn
+#' @keywords intersphere Venn
 
 
 intersphere = function(data,colors = NULL,alpha = 25,cex = 1,expand.circles = 1,expand.lims = 1.5,main = "intersphere: overlap diagram",onlySets = seq(length(data),2,by=-1))

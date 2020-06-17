@@ -34,18 +34,22 @@
 #' 		align(homer,colpal = colpal,main = "D'OH!",asp = 1,axes = FALSE)
 #' }
 #'
-#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = TRUE,fileformat = "jpeg")
+#' # choose 'saveit = TRUE' for saving the plot in the specified fileformat #
 #'
-#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = TRUE,fileformat = "png")
+#' # choose 'notinR = TRUE' to suppress plotting in R #
 #'
-#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = TRUE,fileformat = "bmp")
+#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = FALSE,notinR = FALSE,fileformat = "jpeg")
 #'
-#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = TRUE,fileformat = "tiff")
+#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = FALSE,notinR = FALSE,fileformat = "png")
 #'
-#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = TRUE,fileformat = "ps")
+#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = FALSE,notinR = FALSE,fileformat = "bmp")
 #'
-#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = TRUE,fileformat = "pdf")
-#' @keywords plot, jpeg, png, bmp, tiff, ps, pdf
+#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = FALSE,notinR = FALSE,fileformat = "tiff")
+#'
+#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = FALSE,notinR = FALSE,fileformat = "ps")
+#'
+#' plotit("homer",sw = 2,sh = 2,sres = 2,plotsfkt,saveit = FALSE,notinR = FALSE,fileformat = "pdf")
+#' @keywords plot jpeg png bmp tiff ps pdf
 
 
 plotit = function(filename,sw = 1,sh = 1,sres = 1,plotsfkt,ww = 7,wh = 7,pointsize = 12,dev.pointsize = 8,paper = "special",quality = 100,units = "px",bg = "white",fileformat = "jpeg",saveit = FALSE,notinR = FALSE,addformat = NULL)

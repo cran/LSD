@@ -29,7 +29,7 @@
 #' axis(1)
 #' axis(2)
 #' box()
-#' @keywords mean, sd
+#' @keywords mean sd
 
 
 singlemsdplot = function(input,col = "darkgreen",alpha = 50,bars = TRUE,length = 0.25,at = NULL)
@@ -99,7 +99,7 @@ LSD.singlemsdplot = singlemsdplot
 #' msdplot(clus,labs,at,separate=FALSE,col=colpal,alpha=25,xlabels=at)
 #' 
 #' msdplot(clus,labs,at,col=colpal,alpha=50,xlabels=at)
-#' @keywords mean, sd
+#' @keywords mean sd
 
 
 msdplot = function(input,label = NULL,at = NULL,xlim = NULL,ylim = NULL,xlab = "",ylab = "",main = "msdplot",xaxt = "s",xlabels = NULL,las = 1,separate = TRUE,size = TRUE,col = "darkgreen",bars = TRUE,alpha = 50,...)

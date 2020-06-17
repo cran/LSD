@@ -31,7 +31,7 @@
 #' data(homer)
 #' colpal = c("white","black","yellow","wheat3")
 #' align(homer,colpal = colpal,main = "D'OH!",asp = 1,axes = FALSE)
-#' @keywords alignment, sequence
+#' @keywords alignment sequence
 
 
 align = function(input,colpal = "heat",simulate = FALSE,daltonize = FALSE,cvd = "p",alpha = NULL,label = FALSE,digits = 1,border = NULL,xlim = NULL,ylim = NULL,main = NULL,axes = TRUE,...) 

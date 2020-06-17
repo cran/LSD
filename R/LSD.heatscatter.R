@@ -44,7 +44,7 @@
 #' axis(1)
 #' axis(2)
 #' box()
-#' @keywords scatterplot, heatcolors
+#' @keywords scatterplot heatcolors
 
 
 heatscatterpoints = function(x,y,pch = 19,cexplot = 0.5,nrcol = 30,grid = 100,colpal = "heat",simulate = FALSE,daltonize = FALSE,cvd = "p",alpha = NULL,rev = FALSE,xlim = NULL,ylim = NULL,only = "none",add.contour = FALSE,nlevels = 10,color.contour = "black",greyscale = FALSE,log = "",...)
@@ -79,7 +79,7 @@ heatscatterpoints = function(x,y,pch = 19,cexplot = 0.5,nrcol = 30,grid = 100,co
 		return(erg)
 	}
 	
-	# kde2d.adj function: adapted and modified from Venables and Ripley's MASS package #
+	# kde2d.adj function: adapted and modified from Venables and Ripley's MASS package (distributed under the GPL-2 | GPL-3 license, https://cran.r-project.org/web/packages/MASS/index.html) #
 	
 	kde2d.adj = function(x,y,h,n = 25,lims = c(range(x),range(y)),only = "none"){
 		nx = length(x)
@@ -180,7 +180,7 @@ LSD.heatscatterpoints = heatscatterpoints
 #' @param ylab y labels, standard graphics parameter.
 #' @param main title(s) of the plot, standard graphics parameter.
 #' @param cor logical: if \code{TRUE} (\code{FALSE} by default), the correlation is added to the title.
-#' @param method a character specifying the correlation method to use ('pearson' (default), 'kendall' or 'spearman').
+#' @param method a character specifying the correlation method to use ('spearman' (default), 'pearson' or 'kendall').
 #' @param only a character string which contains 'x' if the density should only be computed for the x axis, 'y' for the y axis (defaults to 'none' for the two-dimensional case).
 #' @param add.contour logical: if \code{TRUE} (\code{FALSE} by default), the contour lines are added to the plot.
 #' @param nlevels an integer giving the number of levels of the contour lines.
@@ -204,7 +204,7 @@ LSD.heatscatterpoints = heatscatterpoints
 #' heatscatter(x,y,cor=FALSE,add.contour=TRUE,color.contour="red",greyscale=TRUE)
 #' 
 #' heatscatter(x,y,colpal="spectral",cor=FALSE,add.contour=TRUE)
-#' @keywords scatterplot, heatcolors
+#' @keywords scatterplot heatcolors
 
 
 heatscatter = function(x,y,pch = 19,cexplot = 0.5,nrcol = 30,grid = 100,colpal = "heat",simulate = FALSE,daltonize = FALSE,cvd = "p",alpha = NULL,rev = FALSE,xlim = NULL,ylim = NULL,xlab = NULL,ylab = NULL,main = "heatscatter",cor = FALSE,method = "spearman",only = "none",add.contour = FALSE,nlevels = 10,color.contour = "black",greyscale = FALSE,log = "",...)
@@ -279,7 +279,7 @@ LSD.heatscatter = heatscatter
 #' @param add.points logical: if \code{TRUE} (\code{FALSE} by default), a certain 'group' of points can be colored in all pairwise plots.
 #' @param group indices or rownames of 'mat' to be highlighted in all pairwise plots (not necessarily all).
 #' @param color.group R build-in color in which the 'group' of points should be highlighted.
-#' @param method a character specifying the correlation method to use ('pearson' (default), 'kendall' or 'spearman').
+#' @param method a character specifying the correlation method to use ('spearman' (default), 'pearson' or 'kendall').
 #' @param colpal a character vector containing R built-in color names or a name of a \code{LSD} colorpalette as a character string (see disco() or \code{\link{disco}}) (defaults to "heat", if not specified).
 #' @param simulate logical: if \code{TRUE} (\code{FALSE} by default), a converted colorpalette is used to simulate dichromat vision according to \url{http://www.daltonize.org} (see \code{\link{daltonize}}).
 #' @param daltonize logical: if \code{TRUE} (\code{FALSE} by default), a converted colorpalette is used to enhance dichromat vision according to \url{http://www.daltonize.org} (see \code{\link{daltonize}}).
@@ -310,7 +310,7 @@ LSD.heatscatter = heatscatter
 #' rownames(mat) = 1:nrow(mat)
 #' 
 #' heatpairs(mat,labels=c(expression(Xi),expression(Lambda),expression(Delta)))
-#' @keywords scatterplot, heatcolors
+#' @keywords scatterplot heatcolors
 
 
 heatpairs = function(mat,main = "heatpairs",xlim = NULL,ylim = NULL,labels = NULL,add.points = FALSE,group = NULL,color.group = "magenta",method = "spearman",colpal = "heat",simulate = FALSE,daltonize = FALSE,cvd = "p",alpha = NULL,rev = FALSE,pch=19,cexplot=0.5,cor.cex = 2.5,nrcol=30,grid=100,only = "none",add.contour = FALSE,nlevels = 10,color.contour = "black",greyscale = FALSE,log = "",...)
